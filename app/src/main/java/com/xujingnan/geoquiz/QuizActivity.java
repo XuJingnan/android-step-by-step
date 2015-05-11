@@ -28,6 +28,7 @@ public class QuizActivity extends ActionBarActivity {
     };
     private int mCurrentIndex = 0;
     private static final String TAG = "QuizActivity";
+    private static final String KEY_INDEX = "index";
 
     private void updateQuestion() {
         int question = mQuestionBank[mCurrentIndex].getQuestion();
@@ -56,6 +57,9 @@ public class QuizActivity extends ActionBarActivity {
         Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
 
+        if (savedInstanceState != null) {
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+        }
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
         updateQuestion();
         mQuestionTextView.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +107,12 @@ public class QuizActivity extends ActionBarActivity {
         });
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState");
+        outState.putInt(KEY_INDEX, mCurrentIndex);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
