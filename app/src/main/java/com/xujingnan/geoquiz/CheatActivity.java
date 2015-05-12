@@ -2,6 +2,7 @@ package com.xujingnan.geoquiz;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ public class CheatActivity extends Activity {
     private boolean mIsCheat = false;
 
     private TextView mAnswerTextView;
+    private TextView mApiLevelTextView;
     private Button mShowAnswer;
 
     @Override
@@ -34,6 +36,8 @@ public class CheatActivity extends Activity {
         }
 
         mAnswerTextView = (TextView) findViewById(R.id.answerTextView);
+        mApiLevelTextView = (TextView) findViewById(R.id.apiLevelTextView);
+        mApiLevelTextView.setText("API Level " + String.valueOf(Build.VERSION.SDK_INT));
         mShowAnswer = (Button) findViewById(R.id.showAnswerButton);
         mShowAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
